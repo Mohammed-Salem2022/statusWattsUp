@@ -1,5 +1,6 @@
 
 import 'package:clipboard/clipboard.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,9 +8,11 @@ import 'package:share_plus/share_plus.dart';
 import 'package:status_wattsup/view_modle/controller_new_message.dart';
 class NewMessage_Widget  extends StatelessWidget {
   String newmessage;
+  String kind;
   NewMessage_Widget({
     Key? key,
     required this.newmessage,
+    required this.kind,
 
   }) : super(key: key);
   @override
@@ -32,6 +35,7 @@ class NewMessage_Widget  extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
 
                         Container(
@@ -53,6 +57,10 @@ class NewMessage_Widget  extends StatelessWidget {
                             )
 
 
+                        ),
+                        Text(
+                            kind,
+                            style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

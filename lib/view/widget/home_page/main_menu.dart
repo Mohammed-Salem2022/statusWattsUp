@@ -1,14 +1,9 @@
 
-
-
-
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:status_wattsup/view/ads_admob/banner_ads.dart';
 import 'package:status_wattsup/view/status_page_screen.dart';
 import 'package:status_wattsup/view_modle/controller_home_page.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -21,6 +16,7 @@ final controllerhomepage=Get.put(ControllerHomePage());
     return Container(
       child: Column(
         children: [
+              //here ad Banner
 
           //here desgin New World
           desginNewMessage(context),
@@ -69,7 +65,8 @@ final controllerhomepage=Get.put(ControllerHomePage());
                 );
               }
             ),
-          )
+          ),
+          AdBanner(),
         ],
       ),
     );
@@ -178,6 +175,7 @@ class main2 extends StatelessWidget {
   }
 }
 Widget desginNewMessage(BuildContext context){
+  //كلمات الجديده
   return SingleChildScrollView(
     child: Row(
           children: [

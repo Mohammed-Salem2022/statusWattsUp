@@ -61,9 +61,10 @@ class NewMessage extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder:(context, index) {
                     Timestamp timestamp=snapshot.data!.docs[index]['time'];
+                    String kind=snapshot.data!.docs[index]['kind'];
                     String timeago2 = timeago.format(timestamp.toDate(),locale: 'en_short');
                     return  controller.gettimeago(timeago2)?
-                    NewMessage_Widget(newmessage: snapshot.data!.docs[index]['message']):Container();
+                    NewMessage_Widget(newmessage: snapshot.data!.docs[index]['message'],kind: kind,):Container();
                   },
                 );
 

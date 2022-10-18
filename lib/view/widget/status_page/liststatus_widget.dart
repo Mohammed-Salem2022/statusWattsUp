@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:status_wattsup/view/ads_admob/InterstitialAd+ads_widget.dart';
 import 'package:status_wattsup/view_modle/controller_status_page.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../../modle/send_get_data.dart';
 class  ListStatus extends StatelessWidget {
   String namestatus;
-
+   int countAds=0;
   Send_get_data getdatafirbase;
   ListStatus({
     Key? key,
@@ -77,6 +78,10 @@ class  ListStatus extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: (){
+                  countAds++;
+                  print(countAds.toString());
+                  print('2222222222222222222222222222222222');
+                  Interstitial_Ad.loadInterstitialAd();
                  FlutterClipboard.copy(getdatafirbase.message).then((value) {
                    Get.snackbar(
                        'نسخ',
@@ -86,6 +91,11 @@ class  ListStatus extends StatelessWidget {
                        snackPosition:   SnackPosition.BOTTOM,
 
                    );
+                   if(countAds==2){
+                     countAds=0;
+                         Interstitial_Ad.showInterstitialAd();
+                   }
+
 
                  });
                },
