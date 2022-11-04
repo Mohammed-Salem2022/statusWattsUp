@@ -11,7 +11,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../../modle/send_get_data.dart';
 class  ListStatus extends StatelessWidget {
   String namestatus;
-   int countAds=0;
+
   Send_get_data getdatafirbase;
   ListStatus({
     Key? key,
@@ -28,7 +28,7 @@ class  ListStatus extends StatelessWidget {
          padding: const EdgeInsets.all(8.0),
          child: Card(
          elevation: 2,
-         color: Colors.white,
+         color:  Get.isDarkMode?Colors.black38:Colors.white,
 
          child: Container(
 
@@ -66,7 +66,7 @@ class  ListStatus extends StatelessWidget {
          Text(getdatafirbase.message,
          textAlign: TextAlign.right,
          style: GoogleFonts.cairo(
-         color: Colors.black,
+         color: Get.isDarkMode?Colors.white:Colors.black,
          fontWeight: FontWeight.w500,
          fontSize: 20
            ),
@@ -78,11 +78,12 @@ class  ListStatus extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: (){
-                  countAds++;
-                  print(countAds.toString());
-                  print('2222222222222222222222222222222222');
-                  Interstitial_Ad.loadInterstitialAd();
-                 FlutterClipboard.copy(getdatafirbase.message).then((value) {
+
+                   Interstitial_Ad.loadInterstitialAd();
+                   FlutterClipboard.copy(getdatafirbase.message).then((value) {
+                   controller.countAds++;
+                   // print(controller. countAds.toString());
+                   // print('2222222222222222222222222222222222');
                    Get.snackbar(
                        'نسخ',
                      getdatafirbase. message,
@@ -91,8 +92,8 @@ class  ListStatus extends StatelessWidget {
                        snackPosition:   SnackPosition.BOTTOM,
 
                    );
-                   if(countAds==2){
-                     countAds=0;
+                   if(controller. countAds==2){
+                     controller.  countAds=0;
                          Interstitial_Ad.showInterstitialAd();
                    }
 

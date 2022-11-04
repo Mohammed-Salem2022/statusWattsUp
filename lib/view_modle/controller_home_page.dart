@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../modle/adsmanger.dart';
+import 'darkmode/them_controller.dart';
 
 class ControllerHomePage extends GetxController with WidgetsBindingObserver{
   BannerAd? bannerAd;
@@ -84,10 +85,15 @@ class ControllerHomePage extends GetxController with WidgetsBindingObserver{
   void onInit() async{
     // TODO: implement onInit
     super.onInit();
+
     createbannerAd();
     WidgetsBinding.instance.addObserver(this);
     print(await getAdsbannerFromAdmob());
-    print('sssssssssssssssssssssss');
+    print(ThemeDarkController().thememode);
+    print('jjjjjjjjjjjjjjjjjjjjjjjjj');
+    print(ThemeDarkController(). getThemeDarkFromstorgetheme());
+    print('jjjjjjjjjjjjjjjjjjjjjjjjj');
+
   }
   @override
   void onClose() {

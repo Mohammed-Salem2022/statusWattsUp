@@ -20,7 +20,10 @@ class StatusPageScren extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Get.isDarkMode?Colors.white60:Colors.white70,
       appBar: AppBar(
+        // shadowColor: Colors.black,
+        backgroundColor:  Get.isDarkMode?Colors.black54:Colors.blue,
         centerTitle: true,
         title: Text(
           getdata,
