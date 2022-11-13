@@ -27,11 +27,11 @@ bool  getThemeDarkFromstorgetheme(){
 
    ChangeThemedark(){
       //getThemeDarkFromstorgetheme هنا نغير لون على حسب قيمة
+
     Get.changeThemeMode(getThemeDarkFromstorgetheme()?ThemeMode.light:ThemeMode.dark);
     //هنا نرجع نحفظ  القيمه صج او خطاء
     saveThemeDarkData(!getThemeDarkFromstorgetheme());
-         print(getThemeDarkFromstorgetheme());
-         print('55555555555555555555555');
+
 
    }
    ThemeMode get thememode{

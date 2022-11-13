@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class GetdataForMainStatusModle{
 
   String name;
-  String imageUrl;
+  String imageUrl='empty';
   Timestamp time;
 
   GetdataForMainStatusModle(

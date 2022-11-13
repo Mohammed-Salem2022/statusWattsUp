@@ -13,7 +13,7 @@ class themeApp{
 
   static final dark= ThemeData(
     primaryColor: Colors.black,
-    backgroundColor: Colors.black,
+    backgroundColor: Colors.black87,
     brightness: Brightness.dark,
   );
 

@@ -2,14 +2,21 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:lottie/lottie.dart';
 
 import '../modle/adsmanger.dart';
 import 'darkmode/them_controller.dart';
 
 class ControllerHomePage extends GetxController with WidgetsBindingObserver{
+  // this var restrem for cut internt
+  var restrem;
+  double? width1=Get.context!.width;
+  double? height=Get.context!.height;
   BannerAd? bannerAd;
   bool isAdReady=false;
   bool testMode=false;
@@ -88,12 +95,36 @@ class ControllerHomePage extends GetxController with WidgetsBindingObserver{
 
     createbannerAd();
     WidgetsBinding.instance.addObserver(this);
-    print(await getAdsbannerFromAdmob());
-    print(ThemeDarkController().thememode);
-    print('jjjjjjjjjjjjjjjjjjjjjjjjj');
-    print(ThemeDarkController(). getThemeDarkFromstorgetheme());
-    print('jjjjjjjjjjjjjjjjjjjjjjjjj');
+    //check on interent
+  var   restrem2=await  Connectivity().checkConnectivity();
 
+    if(restrem2.name=='none') {
+      Get.defaultDialog(title:  '',titleStyle: TextStyle(color: Colors.red),
+      actions: [
+      Column(
+        children: [
+          Text('لا يوجد لديك انترنت'),
+          SizedBox(height: 10,),
+          MaterialButton(onPressed: (){
+             Get.back();
+          },
+            child:  Text('موافق'),
+          color: Colors.blueAccent,
+          ),
+
+        ],
+      )
+
+      ],
+
+      content: Lottie.asset('image/no internt.json',
+        width:width1! *0.88  ,
+        height:height! /3  ,
+      )
+      //
+      //
+      );
+    }
   }
   @override
   void onClose() {

@@ -3,23 +3,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:status_wattsup/view/ads_admob/banner_ads.dart';
 import 'package:status_wattsup/view/status_page_screen.dart';
 import 'package:status_wattsup/view_modle/controller_home_page.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../../modle/getdata_for_mainstatus_modl.dart';
 import '../../new_message.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 class mainMenu extends StatelessWidget {
 final controllerhomepage=Get.put(ControllerHomePage());
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
               //here ad Banner
-
+           CheckhaveInternt(),
           //here desgin New World
           desginNewMessage(context),
+
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance.collection('addstatus').snapshots(),
@@ -90,7 +95,7 @@ class main2 extends StatelessWidget {
         return   GestureDetector(
           onTap: (){
 
-            Get.to( () => StatusPageScren(),arguments:getdataForMainStatusModle.name);
+            Get.to( () => StatusPageScren(),arguments:getdataForMainStatusModle.name,transition: Transition.zoom,duration:  Duration(milliseconds: 500));
 
 
           },
@@ -107,14 +112,29 @@ class main2 extends StatelessWidget {
                 child:Stack(
                     fit: StackFit.expand,
                     children: [
+
+
+
+
+
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child:
                         Image.network(
                           getdataForMainStatusModle.imageUrl,
                           fit: BoxFit.cover,
+                          loadingBuilder: ( context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                  strokeWidth:4
+                              ),
+                            );
+                          },
                         ),
                       ),
+
                       Container(
                         decoration: const BoxDecoration(
                             color: Colors.black45,
@@ -183,7 +203,7 @@ Widget desginNewMessage(BuildContext context){
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
                 onTap: (){
-                  Get.to(()=>NewMessage() );
+                  Get.to(()=>NewMessage() ,transition: Transition.leftToRight,);
 
                 },
                 child: Container(
@@ -233,5 +253,19 @@ Widget desginNewMessage(BuildContext context){
           ],
         ),
   );
+
+}
+Widget CheckhaveInternt() {
+  double? width1=Get.context!.width;
+  double? height=Get.context!.height;
+  return   StreamBuilder<ConnectivityResult>(
+    stream: Connectivity().onConnectivityChanged,
+    builder: (context, snapshot) {
+      return  snapshot.data==ConnectivityResult.none?
+      Lottie.asset('image/no-wifi.json',
+        width:width1! *0.20  ,
+        height:height! *0.10  ,
+      ) :Container();
+    },);
 
 }

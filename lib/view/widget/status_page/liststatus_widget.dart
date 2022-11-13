@@ -82,10 +82,10 @@ class  ListStatus extends StatelessWidget {
                    Interstitial_Ad.loadInterstitialAd();
                    FlutterClipboard.copy(getdatafirbase.message).then((value) {
                    controller.countAds++;
-                   // print(controller. countAds.toString());
-                   // print('2222222222222222222222222222222222');
+                  
                    Get.snackbar(
                        'نسخ',
+
                      getdatafirbase. message,
                        backgroundColor: Colors.blue,
                        colorText:       Colors.white,
